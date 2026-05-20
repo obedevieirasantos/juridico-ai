@@ -22,7 +22,7 @@ A solução combina:
 
 # 🧠 Arquitetura da Solução
 
-```text id="n8q3vr"
+```text
 PDF → Extração de Texto → Chunking → Embeddings → ChromaDB → Recuperação Contextual → LLM → Resposta Inteligente
 ```
 
@@ -91,7 +91,7 @@ Arquitetura moderna baseada em FastAPI.
 
 # 📂 Estrutura do Projeto
 
-```text id="m5x2qw"
+```text
 backend/
 │
 ├── app/
@@ -109,6 +109,7 @@ backend/
 │       ├── chroma_service.py
 │       └── llm_service.py
 │
+├── assets/
 ├── db/
 ├── .env
 ├── .gitignore
@@ -132,15 +133,15 @@ O projeto utiliza:
 
 ## Clonar repositório
 
-```bash id="p3n8wd"
-git clone https://github.com/seu-usuario/juridico-ai.git
+```bash
+git clone https://github.com/obedevieirasantos/juridico-ai.git
 ```
 
 ---
 
 ## Entrar no diretório
 
-```bash id="k9m4xt"
+```bash
 cd juridico-ai/backend
 ```
 
@@ -150,7 +151,7 @@ cd juridico-ai/backend
 
 ### Windows
 
-```bash id="w2q7rv"
+```bash
 ..\venv\Scripts\activate
 ```
 
@@ -158,7 +159,7 @@ cd juridico-ai/backend
 
 ## Instalar dependências
 
-```bash id="y6r3mn"
+```bash
 pip install -r requirements.txt
 ```
 
@@ -168,7 +169,7 @@ pip install -r requirements.txt
 
 Criar arquivo `.env`
 
-```env id="f8x5pt"
+```env
 GROQ_API_KEY=sua_chave_api
 ```
 
@@ -176,7 +177,7 @@ GROQ_API_KEY=sua_chave_api
 
 ## Executar servidor
 
-```bash id="v4m2qa"
+```bash
 uvicorn main:app --reload
 ```
 
@@ -186,7 +187,7 @@ uvicorn main:app --reload
 
 Após iniciar a API:
 
-```text id="q7p3dk"
+```text
 http://127.0.0.1:8000/docs
 ```
 
@@ -196,7 +197,7 @@ http://127.0.0.1:8000/docs
 
 ## 1️⃣ Upload do Documento
 
-```text id="h2w9mz"
+```text
 /upload
 ```
 
@@ -204,7 +205,7 @@ http://127.0.0.1:8000/docs
 
 ## 2️⃣ Geração de Embeddings
 
-```text id="u5r8xn"
+```text
 /salvar-vetores
 ```
 
@@ -212,9 +213,35 @@ http://127.0.0.1:8000/docs
 
 ## 3️⃣ Consulta Inteligente
 
-```text id="n4x6qp"
+```text
 /buscar
 ```
+
+---
+
+# 🖼️ Screenshots
+
+## Upload de PDF
+
+![Upload PDF](assets/upload-pdf.png)
+
+---
+
+## Geração de Embeddings
+
+![Embeddings](assets/salvar-vetores.png)
+
+---
+
+## Busca Semântica
+
+![Busca Semântica](assets/buscar-documento.png)
+
+---
+
+## Resposta Gerada pela IA
+
+![Resposta IA](assets/resposta-ia.png)
 
 ---
 
