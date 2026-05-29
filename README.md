@@ -12,6 +12,38 @@ O projeto permite enviar um contrato em PDF, transformar o conteúdo em vetores,
 
 ---
 
+## 🏗️ Arquitetura
+
+```
+┌─────────────────────────────────────────────┐
+│           Frontend — Streamlit               │
+│   Upload PDF · Pergunta · Resposta           │
+└────────┬──────────────┬───────────┬──────────┘
+         │              │           │
+      /upload   /salvar-vetores  /buscar
+         │              │           │
+┌────────▼──────────────▼───────────▼──────────┐
+│           Backend — FastAPI + Uvicorn         │
+└──────┬──────────┬──────────┬──────────┬───────┘
+       │          │          │          │
+  PDF Service  Chunk     Embedding   LLM
+  pypdf        Service   Service     Service
+               500 tok   MiniLM      Groq
+               overlap50            llama3-70b
+       │          │          │          │
+       ▼          └────┬─────┘          ▼
+   Storage           ChromaDB        Groq API
+   PDF · disco     banco vetorial    LLM externo
+                   top-3 chunks
+
+Fluxo de consulta (RAG):
+Pergunta → Embedding → Busca → Contexto → LLM → Resposta
+```
+
+![Arquitetura Jurídico AI](assets/arquitetura.svg)
+
+---
+
 ## 📸 Screenshots
 
 ### Tela Inicial
@@ -28,12 +60,6 @@ O projeto permite enviar um contrato em PDF, transformar o conteúdo em vetores,
 ---
 
 ## 🚀 Fluxo do Sistema
-
-```
-PDF → Extração de texto → Chunking → Embeddings → ChromaDB
-                                                       ↓
-Resposta ← LLM (Groq) ← Contexto ← Busca semântica ←─┘
-```
 
 1. Upload de um contrato em PDF
 2. Extração e divisão do texto em chunks
@@ -116,7 +142,6 @@ Frontend disponível em `http://localhost:8501`
 ## Autor
 
 **Obede Vieira dos Santos**
-
 GitHub: https://github.com/obedevieirasantos
 LinkedIn: https://www.linkedin.com/in/obedevieira
 
